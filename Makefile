@@ -34,6 +34,7 @@ jupyter:
 	@docker start jupyter > /dev/null 2>&1 || docker run -p 9999:8888 \
 		-p 4040:4040 \
 		-p 4041:4041 \
+		-v /tmp:/data \
 		--net=develop \
 		--name jupyter_pyspark \
 		--restart always \
