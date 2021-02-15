@@ -30,6 +30,10 @@ postgres:
 spark:
 	docker-compose up -d
 
+spark-submit:
+	cp pyspark/src/main.py /tmp/
+	docker exec spark spark-submit --master spark://spark:7077 /data/main.py
+
 jupyter:
 	@docker start jupyter > /dev/null 2>&1 || docker run -p 9999:8888 \
 		-p 4040:4040 \
