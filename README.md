@@ -82,7 +82,7 @@ sc.stop()
 
 The Spark and Jupyter containers mount the hosts `/tmp` folder to `/data`. The mount acts as a shared file system accessible to both Jupyter and Spark. In a production environment a network file system, S3 or HDFS would be used.
 
-In the example below, we download the dataset and ask Spark load it into a dataframe. Next, we use an aggerate function to caclculate the average systolic blood pressure from the sample.
+In the example below, we download the dataset and ask Spark to load it into a Dataframe. Next, we use an aggerate function to calculate the average systolic blood pressure from the sample.
 
 From a Jupyter notebook:
 
@@ -163,4 +163,16 @@ for row in stats.rdd.collect():
 print("{} {}%".format(row['outcome'], row['count'] / samples * 100))
 
 sc.stop()
+```
+
+## Running A Spark Job
+
+Instead of driving everything from a Jupyter notebook, we can run our Python code directly on Spark by submitting it as a job.
+
+I've packaged the coin toss example as a Python file at `pyspark/src/main.py`.
+
+We can submit the code as a job to spark by running:
+
+```bash
+make spark-submit
 ```
